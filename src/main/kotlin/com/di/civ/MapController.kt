@@ -12,6 +12,8 @@ import java.io.File
 class MapController {
 
     lateinit var root : GridPane
+    lateinit var posicion: Label
+    lateinit var labelTerreno: Label
     private val mapa = Mapa()
     private var subMapa = mapa.obtenerSubMapa()
 
@@ -42,6 +44,9 @@ class MapController {
                 val vBox = root.children[pos]
                 vBox as VBox
                 vBox.style = "-fx-background-color: ${terreno.colorTerreno};" // $terreno.color
+                vBox.setOnMouseClicked {
+                    labelTerreno.text = "Terreno: " +mostrarTerrenoActual(terreno)
+                }
 
                 val imageView = vBox.children[0] as ImageView
                 val f = File(terreno.imagen)
@@ -52,35 +57,58 @@ class MapController {
                 val label = vBox.children[1] as Label
                 label.text = terreno.nombre
                 label.maxWidth = 80.0
+                label.minWidth = 80.0
                 label.style = "-fx-background-color: ${terreno.colorTexto};"
                 label.alignment = Pos.CENTER
 
                 pos++
+
             }
         }
+        mostrarPosicionActual()
+
     }
 
     fun moverArriba() {
         println("moverArriba")
         mapa.moverArriba()
         rellenarGirdPaneConMapa(mapa.obtenerSubMapa())
+        mostrarPosicionActual()
     }
 
     fun moverAbajo() {
         println("moverAbajo")
         mapa.moverAbajo()
         rellenarGirdPaneConMapa(mapa.obtenerSubMapa())
+        mostrarPosicionActual()
     }
 
     fun moverIzquierda() {
         println("moverIzquierda")
         mapa.moverIzquierda()
         rellenarGirdPaneConMapa(mapa.obtenerSubMapa())
+        mostrarPosicionActual()
     }
 
     fun moverDerecha() {
         println("moverDerecha")
         mapa.moverDerecha()
         rellenarGirdPaneConMapa(mapa.obtenerSubMapa())
+        mostrarPosicionActual()
     }
+
+    fun posiInicial(){
+        mapa.centrarAlCero()
+        subMapa = mapa.obtenerSubMapa()
+        rellenarGirdPaneConMapa(subMapa)
+        mostrarPosicionActual()
+    }
+    fun mostrarPosicionActual(){
+        posicion.text="Mi posicion es ("+mapa.obtenerFilaActual()+","+mapa.obtenerColumnaActual()+")"
+    }
+    fun mostrarTerrenoActual(terreno: Terreno): String{
+        return terreno.nombre
+    }
+
+
 }

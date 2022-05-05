@@ -66,5 +66,15 @@ class Mapa {
         return subMapa
     }
 
+    fun centrarAlCero() {
+        posicionActual = PosicionActual(0,0)
+    }
+    fun obtenerFilaActual(): Int {
+        return posicionActual.fila
+    }
+    fun obtenerColumnaActual(): Int {
+        return posicionActual.columna
+    }
+
 
 }
