@@ -7,6 +7,11 @@ data class Terreno(var nombre : String, val imagen  : String, val sePuedeAndarSo
     }
     companion object {
 
+        const val  SAQUEADO = "Saqueado"
+        const val  CONQUISTADO = "Conquistado"
+        const val  CON_MINA = "Con mina"
+        const val  CON_GRANJA = "Con Granja"
+
         fun crearLlanura(): Terreno {
             return Terreno("Llanura", "src\\main\\resources\\images\\llanura.png", true, "#70E9F5", "#22750B" )
         }

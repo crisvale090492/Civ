@@ -1,12 +1,16 @@
 package com.di.civ
 
+import javafx.fxml.FXMLLoader
 import javafx.geometry.Insets
 import javafx.geometry.Pos
+import javafx.scene.Scene
 import javafx.scene.control.Label
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
+import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.VBox
+import javafx.stage.Stage
 import java.io.File
 
 class MapController {
@@ -36,7 +40,9 @@ class MapController {
         root.vgap = 5.0
         root.padding = Insets(50.0, 50.0, 50.0, 50.0)
     }
-
+    fun recopiar() {
+        rellenarGirdPaneConMapa(subMapa)
+    }
     private fun rellenarGirdPaneConMapa(subMapa: MutableList<MutableList<Terreno>>) {
         var pos = 0
         subMapa.forEach { terrenos ->
@@ -46,6 +52,7 @@ class MapController {
                 vBox.style = "-fx-background-color: ${terreno.colorTerreno};" // $terreno.color
                 vBox.setOnMouseClicked {
                     labelTerreno.text = "Terreno: " +mostrarTerrenoActual(terreno)
+                    abrirVentanaDetails(terreno)
                 }
 
                 val imageView = vBox.children[0] as ImageView
@@ -108,6 +115,20 @@ class MapController {
     }
     fun mostrarTerrenoActual(terreno: Terreno): String{
         return terreno.nombre
+
+    }
+
+    fun abrirVentanaDetails(terreno: Terreno){
+
+        val stage = Stage()
+        val loader = FXMLLoader(javaClass.getResource("details.fxml"))
+        val root = loader.load<AnchorPane>()
+        val scene = Scene(root,500.0,500.0)
+        stage.scene = scene
+        stage.show()
+        val detailsController = loader.getController<DetailsController>()
+        detailsController.enviarTerreno(terreno)
+        detailsController.enviarMapController(this)
     }
 
 
