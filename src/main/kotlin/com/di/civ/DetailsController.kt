@@ -78,30 +78,30 @@ class DetailsController {
        when ( boton1.text ) {
            "Crear Granja" -> {
                imagen2.image = Image(granja.toURI().toURL().toString())
-               terreno?.nombre = Terreno.CON_GRANJA
+               terreno?.estado = Terreno.CON_GRANJA
                mapController?.posiActual()
-               //mapController?.recopiar()
+
            }
            "Saquear" -> {
                imagen2.image = Image(saquear.toURI().toURL().toString())
-               terreno?.nombre = Terreno.SAQUEADO
+               terreno?.estado = Terreno.SAQUEADO
                mapController?.posiActual()
-              // mapController?.recopiar()
+
            }
            "Crear mina" -> {
                imagen2.image = Image(mina.toURI().toURL().toString())
-               terreno?.nombre = Terreno.CON_MINA
+               terreno?.estado = Terreno.CON_MINA
                mapController?.posiActual()
-              // mapController?.recopiar()
+
            }
        }
     }
     fun presionaBoton2() {
         if (boton2.text == "Conquistar") {
             imagen2.image = Image(conquistar.toURI().toURL().toString())
-            terreno?.nombre = Terreno.CONQUISTADO
+            terreno?.estado = Terreno.CONQUISTADO
             mapController?.posiActual()
-            //mapController?.recopiar()
+
         }
 
     }

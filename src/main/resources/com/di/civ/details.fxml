@@ -4,11 +4,11 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.di.civ.DetailsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.di.civ.DetailsController">
    <Label fx:id="lTerreno" layoutX="235.0" layoutY="28.0" text="Nombre Terreno" textFill="black" />
-   <Label fx:id="lColorTerreno" layoutX="235.0" layoutY="53.0" text="Color Terreno" />
+   <Label fx:id="lColorTerreno" layoutX="235.0" layoutY="53.0" text="           " />
    <ImageView fx:id="lImagen" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
-   <Label fx:id="lColorTexto" layoutX="235.0" layoutY="78.0" text="Color Texto" />
+   <Label fx:id="lColorTexto" layoutX="235.0" layoutY="78.0" text="           " />
    <Label fx:id="lTransitable" layoutX="235.0" layoutY="103.0" text="Transitable" />
    <Button fx:id="boton2" focusTraversable="false" layoutX="308.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#presionaBoton2" text="Button" />
    <Button fx:id="boton1" focusTraversable="false" layoutX="235.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#presionaBoton1" text="Button" />

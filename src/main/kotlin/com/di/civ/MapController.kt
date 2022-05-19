@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane
 import javafx.scene.layout.VBox
 import javafx.stage.Stage
 import java.io.File
+import kotlin.random.Random
 
 class MapController {
 
@@ -50,7 +51,7 @@ class MapController {
                 vBox as VBox
                 vBox.style = "-fx-background-color: ${terreno.colorTerreno};" // $terreno.color
                 vBox.setOnMouseClicked {
-                    labelTerreno.text = "Terreno: " +mostrarTerrenoActual(terreno)
+
                     abrirVentanaDetails(terreno)
                 }
 
@@ -66,7 +67,11 @@ class MapController {
                 label.minWidth = 80.0
                 label.style = "-fx-background-color: ${terreno.colorTexto};"
                 label.alignment = Pos.CENTER
-
+                if (terreno.estado.isEmpty()) {
+                    label.text = mostrarTerrenoActual(terreno)
+                }
+                else
+                    label.text = terreno.estado
                 pos++
 
             }
