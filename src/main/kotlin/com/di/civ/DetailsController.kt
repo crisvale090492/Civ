@@ -79,17 +79,20 @@ class DetailsController {
            "Crear Granja" -> {
                imagen2.image = Image(granja.toURI().toURL().toString())
                terreno?.nombre = Terreno.CON_GRANJA
-               mapController?.recopiar()
+               mapController?.posiActual()
+               //mapController?.recopiar()
            }
            "Saquear" -> {
                imagen2.image = Image(saquear.toURI().toURL().toString())
                terreno?.nombre = Terreno.SAQUEADO
-               mapController?.recopiar()
+               mapController?.posiActual()
+              // mapController?.recopiar()
            }
            "Crear mina" -> {
                imagen2.image = Image(mina.toURI().toURL().toString())
                terreno?.nombre = Terreno.CON_MINA
-               mapController?.recopiar()
+               mapController?.posiActual()
+              // mapController?.recopiar()
            }
        }
     }
@@ -97,7 +100,8 @@ class DetailsController {
         if (boton2.text == "Conquistar") {
             imagen2.image = Image(conquistar.toURI().toURL().toString())
             terreno?.nombre = Terreno.CONQUISTADO
-            mapController?.recopiar()
+            mapController?.posiActual()
+            //mapController?.recopiar()
         }
 
     }
