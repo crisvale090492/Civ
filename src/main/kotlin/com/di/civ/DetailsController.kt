@@ -37,7 +37,6 @@ class DetailsController {
         } else
             lTransitable.text = "No transitable"
 
-
         when (terreno.nombre) {
             "Llanura" -> {
                 boton1.text = "Crear Granja"
