@@ -6,7 +6,7 @@ plugins {
     id 'org.beryx.jlink' version '2.24.1'
 }
 
-group 'com.di'
+group 'com.di.civ'
 version '1.0-SNAPSHOT'
 
 repositories {
