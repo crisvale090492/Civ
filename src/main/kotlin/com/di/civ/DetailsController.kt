@@ -68,6 +68,21 @@ class DetailsController {
             }
 
         }
+        when (terreno.estado) {
+            "Con Granja" -> {
+                imagen2.image = Image(granja.toURI().toURL().toString())
+            }
+            "Con Mina" -> {
+                imagen2.image = Image(mina.toURI().toURL().toString())
+            }
+            "Conquistado" -> {
+                imagen2.image = Image(conquistar.toURI().toURL().toString())
+            }
+            "Saqueado" -> {
+                imagen2.image = Image(saquear.toURI().toURL().toString())
+            }
+        }
+
     }
 
     fun enviarMapController(mapController: MapController){

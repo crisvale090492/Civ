@@ -9,10 +9,8 @@ import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.GridPane
-import javafx.scene.layout.VBox
 import javafx.stage.Stage
 import java.io.File
-import kotlin.random.Random
 
 class MapController {
 
@@ -31,11 +29,11 @@ class MapController {
     private fun iniciarGridPane() {
         for (fila in 0 until Configuracion.filasCampoVision)
             for (columna in 0 until Configuracion.columnasCampoVision) {
-                val vBox = VBox()
-                vBox.children.add(0, ImageView())
-                vBox.children.add(1, Label("fila $fila columna $columna"))
-                root.add(vBox, columna, fila)
-                vBox.alignment = Pos.CENTER
+                val anchorPane = AnchorPane()
+                anchorPane.children.add(0, ImageView())
+                anchorPane.children.add(1, Label("fila $fila columna $columna"))
+                anchorPane.children.add(2, ImageView())
+                root.add(anchorPane, columna, fila)
             }
         root.hgap = 5.0
         root.vgap = 5.0
@@ -47,33 +45,47 @@ class MapController {
         var pos = 0
         subMapa.forEach { terrenos ->
             terrenos.forEach { terreno ->
-                val vBox = root.children[pos]
-                vBox as VBox
-                vBox.style = "-fx-background-color: ${terreno.colorTerreno};" // $terreno.color
-                vBox.setOnMouseClicked {
+                val anchorPane = root.children[pos]
+                anchorPane as AnchorPane
+                anchorPane.style = "-fx-background-color: ${terreno.colorTerreno};" // $terreno.color
+                anchorPane.setOnMouseClicked {
 
                     abrirVentanaDetails(terreno)
                 }
 
-                val imageView = vBox.children[0] as ImageView
+                val imageView = anchorPane.children[0] as ImageView
                 val f = File(terreno.imagen)
                 imageView.fitHeight = 60.0
                 imageView.fitWidth = 60.0
                 imageView.image = Image(f.toURI().toURL().toString())
 
-                val label = vBox.children[1] as Label
+                val label = anchorPane.children[1] as Label
                 label.text = terreno.nombre
                 label.maxWidth = 80.0
                 label.minWidth = 80.0
                 label.style = "-fx-background-color: ${terreno.colorTexto};"
                 label.alignment = Pos.CENTER
+                label.layoutX = 0.0
+                label.layoutY = 70.0
                 if (terreno.estado.isEmpty()) {
                     label.text = mostrarTerrenoActual(terreno)
                 }
                 else
                     label.text = terreno.estado
-                pos++
 
+                val imagenUnidad = anchorPane.children[2] as ImageView
+                terreno.unidad?.let {
+                    imagenUnidad.isVisible = true
+                    val f = File(it.imagenUnidad)
+                    imagenUnidad.fitHeight = 20.0
+                    imagenUnidad.fitWidth = 20.0
+                    imagenUnidad.image = Image(f.toURI().toURL().toString())
+                    imagenUnidad.layoutX = 0.0
+                    imagenUnidad.layoutY = 0.0
+                } ?: kotlin.run {
+                    imagenUnidad.isVisible = false
+                }
+                pos++
             }
         }
         mostrarPosicionActual()

@@ -1,6 +1,6 @@
 package com.di.civ
 
-data class Terreno(var nombre : String, val imagen  : String, val sePuedeAndarSobreEl : Boolean, val colorTerreno: String, val colorTexto: String, var estado : String = "") {
+data class Terreno(var nombre : String, val imagen  : String, val sePuedeAndarSobreEl : Boolean, val colorTerreno: String, val colorTexto: String, var estado : String = "",var unidad: Unidad?= null) {
 
     override fun toString(): String {
         return nombre
