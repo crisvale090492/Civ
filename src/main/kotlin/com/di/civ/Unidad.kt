@@ -1,23 +1,20 @@
 package com.di.civ
 
-class Unidad (var tipo : String,var vidaMaxima: Int){
+import kotlin.random.Random
+
+open class Unidad (var nombre : String,var vidaMaxima: Int, var imagen : String) {
 
     override fun toString(): String {
-        return tipo
+        return nombre
     }
-    companion object {
-
-        fun crearCaballero(): Unidad {
-            return Unidad("Caballero",100)
-        }
-
-        fun crearGuerrero(): Unidad {
-            return Unidad("Guerrero",100)
-        }
-
-        fun crearLancero(): Unidad {
-            return Unidad("Lancero",100)
-        }
-    }
-
 }
+
+class Caballero() : Unidad("Caballero", 100, "src\\main\\resources\\images\\Knight.png") {
+}
+
+class Guerrero() : Unidad("Guerrero", 100, "src\\main\\resources\\images\\Warrior.png") {
+}
+
+class Lancero() : Unidad("Lancero", 100, "src\\main\\resources\\images\\Lancer.png") {
+}
+

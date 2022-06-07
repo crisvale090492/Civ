@@ -1,5 +1,7 @@
 package com.di.civ
 
+import kotlin.random.Random
+
 data class Terreno(var nombre : String, val imagen  : String, val sePuedeAndarSobreEl : Boolean, val colorTerreno: String, val colorTexto: String, var estado : String = "",var unidad: Unidad?= null) {
 
     override fun toString(): String {
@@ -39,5 +41,7 @@ data class Terreno(var nombre : String, val imagen  : String, val sePuedeAndarSo
         fun crearTerrenoDesconocido(): Terreno {
             return Terreno("Desconocido", "src\\main\\resources\\images\\desconocido.png", false, "#32113a", "#dfe5dd")
         }
+
     }
+
 }

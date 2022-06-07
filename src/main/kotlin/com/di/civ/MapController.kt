@@ -11,6 +11,8 @@ import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.GridPane
 import javafx.stage.Stage
 import java.io.File
+import java.io.InputStream
+import kotlin.random.Random
 
 class MapController {
 
@@ -55,8 +57,8 @@ class MapController {
 
                 val imageView = anchorPane.children[0] as ImageView
                 val f = File(terreno.imagen)
-                imageView.fitHeight = 60.0
-                imageView.fitWidth = 60.0
+                imageView.fitHeight = 80.0
+                imageView.fitWidth = 80.0
                 imageView.image = Image(f.toURI().toURL().toString())
 
                 val label = anchorPane.children[1] as Label
@@ -73,16 +75,19 @@ class MapController {
                 else
                     label.text = terreno.estado
 
+
+
                 val imagenUnidad = anchorPane.children[2] as ImageView
                 terreno.unidad?.let {
                     imagenUnidad.isVisible = true
-                    val f = File(it.imagenUnidad)
+                    val f = File(it.imagen)
                     imagenUnidad.fitHeight = 20.0
                     imagenUnidad.fitWidth = 20.0
                     imagenUnidad.image = Image(f.toURI().toURL().toString())
                     imagenUnidad.layoutX = 0.0
                     imagenUnidad.layoutY = 0.0
                 } ?: kotlin.run {
+                    imagenUnidad.image = null
                     imagenUnidad.isVisible = false
                 }
                 pos++
