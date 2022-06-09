@@ -11,7 +11,9 @@ class DetailsController {
     lateinit var lTerreno: Label
     lateinit var lColorTerreno: Label
     lateinit var lColorTexto: Label
+    lateinit var nombreUnidad: Label
     lateinit var lImagen: ImageView
+    lateinit var imagenUnidad: ImageView
     lateinit var lTransitable: Label
     lateinit var boton1 : Button
     lateinit var boton2 : Button
@@ -28,8 +30,13 @@ class DetailsController {
     fun enviarTerreno(terreno: Terreno) {
         this.terreno = terreno
         lTerreno.text = terreno.nombre
+        nombreUnidad.text = terreno.unidad?.nombre
         lColorTerreno.style = "-fx-background-color: ${terreno.colorTerreno};"
         lColorTexto.style = "-fx-background-color: ${terreno.colorTexto};"
+        terreno.unidad?.imagen?.let {
+            val g = File(it)
+            imagenUnidad.image = Image(g.toURI().toURL().toString())
+        }
         val f = File(terreno.imagen)
         lImagen.image = Image(f.toURI().toURL().toString())
         if (terreno.sePuedeAndarSobreEl) {
