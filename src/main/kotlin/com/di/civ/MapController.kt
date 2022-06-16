@@ -21,6 +21,7 @@ class MapController {
     lateinit var labelTerreno: Label
     private val mapa = Mapa()
     private var subMapa = mapa.obtenerSubMapa()
+    lateinit var terreno:Terreno
 
 
     fun initialize() {
@@ -81,8 +82,14 @@ class MapController {
                 terreno.unidad?.let {
                     imagenUnidad.isVisible = true
                     val f = File(it.imagen)
-                    imagenUnidad.fitHeight = 20.0
-                    imagenUnidad.fitWidth = 20.0
+                    if (terreno.unidad?.personajeMio == true) {
+                        imagenUnidad.fitHeight = 40.0
+                        imagenUnidad.fitWidth = 40.0
+                    }
+                    else{
+                        imagenUnidad.fitHeight = 20.0
+                        imagenUnidad.fitWidth = 20.0
+                    }
                     imagenUnidad.image = Image(f.toURI().toURL().toString())
                     imagenUnidad.layoutX = 0.0
                     imagenUnidad.layoutY = 0.0
@@ -98,11 +105,16 @@ class MapController {
     }
 
     fun moverArriba() {
-        println("moverArriba")
-        mapa.moverArriba()
-        rellenarGirdPaneConMapa(mapa.obtenerSubMapa())
-        mostrarPosicionActual()
-    }
+        if (terreno.unidad?.seleccionado == true) {
+
+        }else {
+            println("moverArriba")
+            mapa.moverArriba()
+            rellenarGirdPaneConMapa(mapa.obtenerSubMapa())
+            mostrarPosicionActual()
+        }
+        }
+
 
     fun moverAbajo() {
         println("moverAbajo")
@@ -146,6 +158,9 @@ class MapController {
     }
 
     fun abrirVentanaDetails(terreno: Terreno){
+
+        if (terreno.unidad?.personajeMio == true)
+            terreno.unidad?.seleccionado = true
 
         val stage = Stage()
         val loader = FXMLLoader(javaClass.getResource("details.fxml"))

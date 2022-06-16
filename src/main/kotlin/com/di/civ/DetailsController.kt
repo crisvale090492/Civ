@@ -17,6 +17,7 @@ class DetailsController {
     lateinit var lTransitable: Label
     lateinit var boton1 : Button
     lateinit var boton2 : Button
+    lateinit var botonCurarse : Button
     lateinit var imagen2: ImageView
     var mapController:MapController? = null
     var terreno:Terreno?=null
@@ -43,6 +44,15 @@ class DetailsController {
             lTransitable.text = "Transitable"
         } else
             lTransitable.text = "No transitable"
+
+        if (terreno.unidad?.personajeMio == true){
+            botonCurarse.text = "Curarse"
+            botonCurarse.isVisible = true
+        }
+        else {
+            botonCurarse.isVisible = false
+        }
+
 
         when (terreno.nombre) {
             "Llanura" -> {

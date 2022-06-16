@@ -8,6 +8,7 @@ class Mapa {
 
     private var posicionActual = PosicionActual(0,0)
 
+    var personajeElegido = false
     var matriz = MutableList(Configuracion.filasMapa) {
         MutableList(Configuracion.columnasMapa) {
 
@@ -20,13 +21,21 @@ class Mapa {
                 in 90..99 -> Terreno.crearMontana()
                 else -> Terreno.crearTerrenoDesconocido()
             }
-            if (terreno.sePuedeAndarSobreEl)
-               terreno.unidad = when (Random.nextInt(1, 4)){
+            if (terreno.sePuedeAndarSobreEl) {
+                terreno.unidad = when (Random.nextInt(1, 4)) {
                     1 -> Caballero()
                     2 -> Guerrero()
                     3 -> Lancero()
-                   else -> null
+                    else -> null
                 }
+                if (!personajeElegido) {
+                    terreno.unidad?.personajeMio = true
+                    personajeElegido = true
+                } else{
+                    terreno.unidad?.personajeMio = false}
+
+
+            }
 
             terreno
         }

@@ -15,4 +15,5 @@
    <ImageView fx:id="imagen2" fitHeight="74.0" fitWidth="89.0" layoutX="348.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
    <ImageView fx:id="imagenUnidad" fitHeight="74.0" fitWidth="89.0" layoutX="37.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true" />
    <Label fx:id="nombreUnidad" layoutX="37.0" layoutY="269.0" text="Label" />
+   <Button fx:id="botonCurarse" focusTraversable="false" layoutX="235.0" layoutY="161.0" mnemonicParsing="false" text="Button" />
 </AnchorPane>
